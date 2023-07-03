@@ -19,6 +19,7 @@ public class ChatA extends JFrame implements ActionListener, KeyListener{
 	JPanel p;
 	JTextField t;
 	JButton bt;
+	ChatB chatB;
 	
 	public ChatA() {
 		area = new JTextArea();
@@ -45,7 +46,8 @@ public class ChatA extends JFrame implements ActionListener, KeyListener{
 
 	public void actionPerformed(ActionEvent e) {
 		//System.out.println("버튼 눌렀어?");
-		new ChatB();
+		chatB=new ChatB();
+		chatB.setChatA(this);
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -56,7 +58,16 @@ public class ChatA extends JFrame implements ActionListener, KeyListener{
 		int key=e.getKeyCode(); // js event.keyCode 와 동일 
 		
 		if(key==KeyEvent.VK_ENTER) { //엔터키를 눌럿다면..
-			System.out.println("엔터쳣어?");
+			//System.out.println("엔터쳣어?");
+			
+			//1)나의 창의 area에 입력한 값 대입
+			String msg=t.getText();
+			area.append(msg+"\n");
+			t.setText("");//입력한 값 초기화
+			
+			//2)ChatB 창의 area에 입력한 값 대입 
+			chatB.area.append(msg+"\n");
+			chatB.t.setText("");//입력한 값 초기화
 		}
 		
 	}
