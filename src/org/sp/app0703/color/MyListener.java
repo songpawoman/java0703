@@ -34,7 +34,7 @@ public class MyListener implements ActionListener{
 		if(obj==leftFrame.bt_open) {
 			//우측에 친구창 띄우기
 			//주소값을 보관하는 이유? 추후에 제어하려고...
-			rightFrame=new RightFrame();
+			rightFrame=new RightFrame(leftFrame);
 			
 		}else if(obj==leftFrame.bt_red) {
 			System.out.println("빨간색 눌렀어?");

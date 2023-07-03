@@ -14,16 +14,21 @@ public class RightFrame extends JFrame{
 	JButton bt_blue;
 	JButton bt_pink;
 	JPanel p; //용도: 색상을 부여하기 위함
+	LeftFrame leftFrame; //null이기 기존에 이미 생성되어 있는 LeftFrame을
+								//가져와야 한다
+	
 	
 	//has a 관계로 부품을 가지고 있다는 것은, 이 본체가 태어날때 
 	//부품들도 함께 생성되어야 한다..따라서 초기화할 이유가 있다..
 	//생성자 메서드를 적극 활용해보자
-	public RightFrame() {
+	public RightFrame(LeftFrame leftFrame) {
 		//부품들을 생성하자 
 		bt_green = new JButton("green");
 		bt_blue = new JButton("blue");
 		bt_pink = new JButton("pink");
 		p = new JPanel();
+		this.leftFrame=leftFrame;
+		
 		
 		//버튼들에 배경색을 적용하기 
 		bt_green.setBackground(Color.GREEN);
@@ -41,8 +46,21 @@ public class RightFrame extends JFrame{
 		setVisible(true);
 		setBounds(400, 200, 300, 400);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//버튼들과 리스너와의 연결 
+		MyListener2 listener=new MyListener2(this);
+		
+		bt_green.addActionListener(listener);//버튼과 리스너연결
+		bt_blue.addActionListener(listener);//버튼과 리스너연결
+		bt_pink.addActionListener(listener);//버튼과 리스너연결
+		
 	}
 }
+
+
+
+
+
 
 
 
